@@ -46,6 +46,7 @@ To deploy, you will need either the environment variables set or manually input 
 
 ```yaml
 # serverless.yml
+
 service:
   name: hello
   config:
@@ -86,22 +87,22 @@ You’ll need to redefine your environmental variables each time you open a new 
 
 With the setup all complete we can get to the good stuff of writing code. The path to the file at which you write your Worker is expected to live in what's configured in the `serverless.yml` under `service.functions.someName.script`. In this file you can set the fetch event listener and [write Worker code in Javascript](https://developers.cloudflare.com/workers/writing-workers/).
 
-`serverless.yaml`:
+```yaml
+# serverless.yml
 
-```
 service:
-    name: hello
-    config:..
-    functions:
-      someName:
-        worker: scriptName
-        script: path/filename
-        events: ...
+  name: hello
+  config:..
+  functions:
+    someName:
+      worker: scriptName
+      script: path/filename
+      events: ...
 ```
 
-`path/filename.js`:
+```js
+// path/filename.js
 
-```
 addEventListener('fetch', event => {
   event.respondWith(helloWorld(event.request))
 })
@@ -147,7 +148,7 @@ Your Function must have the `events` field populated in order for the `serverles
 
 ```yml
 # serverless.yml
----
+
 foo:
   name: foo
   script: bar
